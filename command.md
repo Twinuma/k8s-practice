@@ -74,3 +74,26 @@ curl http://localhost -H 'Host: ch05.gihyo.local'
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/minikube/master/deploy/addons/freshpod/freshpod-rc.yaml
 kubectl get pod -l app=nginx -w
 ```
+
+## Job
+```
+kubectl apply -f simple-job.yml
+kubectl logs -l app=pingpong
+kubectl get pod -l app=pingpong --show-all
+```
+
+## CronJob
+```
+kubectl apply -f simple-cronjob.yml
+kubectl get job -l app=pingpong
+kubectl logs -l app=pingpong
+```
+
+## Secret
+```
+$ echo "hogefuga:$(openssl passwd -quiet -crypt whowho)" | base64
+aG9nZWZ1Z2E6eXVGS0djYjlBQ2czTQo=
+
+kubectl apply -f nginx-secret.yml
+kubectl apply -f basic-auth.yml
+```
